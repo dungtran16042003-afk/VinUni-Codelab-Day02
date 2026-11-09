@@ -1,0 +1,6 @@
+Verification summary recorded from the completed local test run
+Command: .venv/bin/python -m pytest -q
+Result: 64 passed, 4 warnings in 0.65s
+Coverage: 30 pickup-checkin behavioral tests and 34 template boundary tests.
+All SDK responses in pytest are explicit mocks; no live model requests are made by pytest.
+Warnings: dependency deprecation and Python 3.9/LibreSSL compatibility notices.

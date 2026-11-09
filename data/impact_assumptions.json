@@ -1,0 +1,16 @@
+{
+  "status": "hypothetical_pilot_targets_not_observed_xanhsm_data",
+  "affected_trips_per_day": 1000,
+  "days_per_month": 30,
+  "baseline_location_seconds": 180,
+  "target_location_seconds": 60,
+  "time_value_vnd_per_hour": 50000,
+  "baseline_calls_per_trip": 2,
+  "target_calls_per_trip": 1,
+  "baseline_first_gate_correct_rate": 0.75,
+  "target_first_gate_correct_rate": 0.95,
+  "baseline_location_cancellation_rate": 0.05,
+  "target_location_cancellation_rate": 0.03,
+  "recovered_trips_completed_rate": 1.0,
+  "average_fare_vnd": 60000
+}

@@ -1,3 +1,28 @@
+# Bài cá nhân — Lê Thanh Tùng, 2A202603819
+
+**Đề tài đã chốt: Xác nhận đúng cổng, mặt đường và điểm đón Xanh SM.**
+
+Branch cá nhân: `le-thanh-tung-2A202603819`. Đây là prototype lab dùng dữ liệu địa điểm tổng hợp; mọi baseline, mục tiêu và tác động tài chính là giả định chưa đo trên Xanh SM.
+
+| Nội dung | File |
+|---|---|
+| Tóm tắt và impact | [Đề xuất cuối](00-xanhsm-personal-problem-proposal.md) |
+| Scan và 3 cards | [01-problem-scan.md](01-problem-scan.md) |
+| Deep-dive, 6-field, AI fit, evaluation | [02-deep-dive-report.md](02-deep-dive-report.md) |
+| AI Log & Reflection | [03-ai-log.md](03-ai-log.md) |
+| Workflow hiện tại giả định | [04-workflow-diagram.png](04-workflow-diagram.png) |
+| Prototype đúng cổng | [pickup_checkin.py](starter-code/pickup_checkin.py) |
+| Bằng chứng gọi Gemini thật | [pickup-gemini-results.json](artifacts/pickup-gemini-results.json) |
+| Kịch bản định lượng tái lập | [impact-scenario.json](artifacts/impact-scenario.json) |
+| Dòng để copy vào bảng kế hoạch | [plan-row.tsv](artifacts/plan-row.tsv) |
+| Nguồn tính năng hiện có và khoảng trống cần kiểm chứng | [Memo check-in](research/2026-11-09-pickup-entrance-checkin.md) |
+
+Chạy bài chính sau khi cài `requirements-dev.txt` và đặt key trong `.env`: `python starter-code/pickup_checkin.py`. Chạy offline checks: `python -m pytest -q`. Tính lại impact: `python tools/calculate_impact.py`. Hướng dẫn đầy đủ và giới hạn ở báo cáo deep-dive.
+
+`starter-code/prompt_prototype.py` là bài thực hành ranh giới pin riêng theo starter/rubric tự động của giảng viên. Các log pin không chứng minh hiệu quả check-in. Autograder gốc được giữ nguyên; code chỉ nộp trên branch cá nhân.
+
+---
+
 # 📖 Hướng Dẫn Học Viên (Student Guide) — Lab 02: AI Product Scoping
 
 Tài liệu này hướng dẫn chi tiết cách thiết lập môi trường lập trình Python, cấu hình API Key, quy trình phân nhánh Git làm việc nhóm và chuẩn bị sản phẩm nộp bài cho **Lab 02: AI Product Scoping (Vin Smart Future)**.

@@ -1,0 +1,13 @@
+{
+  "status": "hypothetical_pilot_targets_not_observed_xanhsm_data",
+  "seconds_saved_per_affected_trip": 120,
+  "location_time_reduction_percent": 66.67,
+  "driver_hours_freed_per_month": 1000.0,
+  "opportunity_time_value_vnd_per_month": 50000000.0,
+  "fewer_location_cancellations_per_day": 20.0,
+  "additional_completed_trips_per_day": 20.0,
+  "additional_gross_fares_vnd_per_month": 36000000,
+  "first_gate_correct_improvement_percentage_points": 20.0,
+  "platform_net_revenue": "unknown: requires actual retained share and costs",
+  "interpretation": "Time value is not cash savings. Gross fares are not platform net revenue. Do not sum these figures as profit or ROI."
+}

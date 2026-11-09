@@ -1,0 +1,15 @@
+{
+  "data_kind": "synthetic_classroom_fixture_not_real_locations",
+  "place_id": "LAB-CAMPUS-A",
+  "place_name": "Khuôn viên A (mô phỏng)",
+  "version": "lab-v1",
+  "is_fresh": true,
+  "vehicle_type": "car",
+  "points": [
+    {"id": "P_MAIN", "name": "Cổng chính / mặt trước", "street": "Đường A (mô phỏng)", "side": "Cùng phía cổng chính, mặt phía nam", "landmark": "Bảng tên khuôn viên", "open": true, "pickup_allowed": true, "verified": true, "vehicle_types": ["car", "bike"], "coordinates": {"lat": 0.001, "lon": 0.001}},
+    {"id": "P_REAR", "name": "Cổng sau", "street": "Đường B (mô phỏng)", "side": "Cùng phía cổng sau, mặt phía bắc", "landmark": "Hiệu thuốc LAB", "open": true, "pickup_allowed": true, "verified": true, "vehicle_types": ["car", "bike"], "coordinates": {"lat": 0.002, "lon": 0.001}},
+    {"id": "P_SIDE_E", "name": "Cổng phụ phía đông", "street": "Đường C (mô phỏng)", "side": "Cùng phía cổng phụ phía đông", "landmark": "Nhà bảo vệ phía đông", "open": true, "pickup_allowed": true, "verified": true, "vehicle_types": ["car", "bike"], "coordinates": {"lat": 0.0015, "lon": 0.002}},
+    {"id": "P_SIDE_W", "name": "Cổng phụ phía tây", "street": "Đường D (mô phỏng)", "side": "Cùng phía cổng phụ phía tây", "landmark": "Nhà bảo vệ phía tây", "open": true, "pickup_allowed": true, "verified": true, "vehicle_types": ["car", "bike"], "coordinates": {"lat": 0.0015, "lon": 0.0005}},
+    {"id": "P_SERVICE", "name": "Cổng dịch vụ đang đóng", "street": "Lối dịch vụ (mô phỏng)", "side": "Trong khu hạn chế", "landmark": "Kho hàng", "open": false, "pickup_allowed": false, "verified": true, "vehicle_types": ["bike"], "coordinates": {"lat": 0.002, "lon": 0.002}}
+  ]
+}

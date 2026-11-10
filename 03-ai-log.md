@@ -1,5 +1,6 @@
----
-**THÔNG TIN DỰ ÁN & NHÓM THỰC HIỆN**
+# Deliverable 03 — AI Collaboration Log & Reflection (Gate I3)
+
+* **THÔNG TIN DỰ ÁN & NHÓM THỰC HIỆN**
 * **Tên nhóm:** [Điền tên nhóm của bạn, ví dụ: Nhóm 02 / VinFast Operations]
 * **Đề tài:** Tối ưu hóa phân luồng sự cố trạm sạc xe điện (VinFast & V-GREEN)
 * **Danh sách thành viên:**
@@ -8,19 +9,8 @@
   3. **Lê Huy Anh** - hanhfpt2226@gmail.com
   4. **Phạm Hoàng Huy** - huyclaynun@gmail.com
   5. **Cấn Xuân Nghĩa** - cannghia.xn@gmail.com
----
-# Deliverable 03 — AI Collaboration Log & Reflection (Gate I3)
 
-> **Thông tin cá nhân:**
->
-> * **Họ và tên:** Nguyễn Tấn Dũng
-> * **Vai trò đảm nhiệm:** AI Product Engineer — Vin Smart Future
-> * **Mảng phụ trách:** VinFast & V-GREEN (Hạ tầng mạng lưới trạm sạc xe điện)
-> * **Mục tiêu deliverable:** Phản ánh trung thực trải nghiệm sử dụng AI làm Thought-Partner (Cộng sự tư duy) trong toàn bộ quá trình scoping và giải quyết bài toán.
-
----
-
-## 1. AI đã hỗ trợ hiệu quả ở những điểm nào? (What AI helped with)
+> 1. AI đã hỗ trợ hiệu quả ở những điểm nào? (What AI helped with)
 
 Trong suốt quá trình thực hiện bài lab, AI đóng vai trò như một cộng sự tư duy phản hồi nhanh (rapid thought-partner), hỗ trợ giải phóng sức lao động ở các khâu:
 

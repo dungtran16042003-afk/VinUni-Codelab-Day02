@@ -29,7 +29,7 @@
 
 ## 🏛️ Bối cảnh: Tôi là ai?
 
-Tôi là **Nguyễn Tấn Dũng**, AI Product Engineer tại **Vin Smart Future**. Nhóm chúng tôi phối hợp cùng Khối Vận hành Dịch vụ Khách hàng & Mạng lưới Trạm sạc của **VinFast / V-GREEN** để giải quyết bài toán nút thắt cổ chai trong quy trình tiếp nhận và phân luồng sự cố hạ tầng sạc.
+Tôi đóng vai là một AI Product Engineer tại **Vin Smart Future**. Nhóm chúng tôi phối hợp cùng Khối Vận hành Dịch vụ Khách hàng & Mạng lưới Trạm sạc của **VinFast / V-GREEN** để giải quyết bài toán nút thắt cổ chai trong quy trình tiếp nhận và phân luồng sự cố hạ tầng sạc.
 
 Khảo sát thực địa tại Trung tâm Giám sát Vận hành Trạm sạc (NOC) cho thấy: Với quy mô hơn 150.000 cổng sạc trên toàn quốc, hệ thống tiếp nhận khoảng 1.000 phản ánh sự cố/ngày dưới dạng tin nhắn tự do từ tài xế. Việc CSKH phải đọc, đối soát và gõ form điều phối thủ công mất tới 25 phút/ticket, trong khi cảm biến IoT trên trụ sạc hoàn toàn "mù" trước các lỗi vật lý (kẹt súng sạc, nứt màn hình, xe khác chắn chỗ). Dự án **V-Charge Triage** được thiết kế nhằm tự động hóa khâu tiền xử lý này bằng LLM, bảo vệ doanh thu sạc và nâng cao chỉ số hài lòng khách hàng.
 

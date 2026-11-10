@@ -1,9 +1,23 @@
 <!-- ============================================================================== -->
+
 <!-- TÊN NHÓM: Nhóm X                                          -->
+
 <!-- TÊN THÀNH VIÊN:                                                         -->
+
 <!-- 1. Nguyễn Tấn Dũng - [Email: dungtran16042003@gmail.com]                                                   
 ============================================================================== -->
 
+---
+**THÔNG TIN DỰ ÁN & NHÓM THỰC HIỆN**
+* **Tên nhóm:** [Điền tên nhóm của bạn, ví dụ: Nhóm 02 / VinFast Operations]
+* **Đề tài:** Tối ưu hóa phân luồng sự cố trạm sạc xe điện (VinFast & V-GREEN)
+* **Danh sách thành viên:**
+  1. **Nguyễn Tấn Dũng (Trưởng nhóm)** - dungtran16042003@gmail.com
+  2. **Lê Thanh Tùng** - lethanhtung6803@gmail.com
+  3. **Lê Huy Anh** - hanhfpt2226@gmail.com
+  4. **Phạm Hoàng Huy** - huyclaynun@gmail.com
+  5. **Cấn Xuân Nghĩa** - cannghia.xn@gmail.com
+---
 # Deliverable 01 — Problem Scan (VinFast / V-GREEN Use Case)
 
 > **Mục tiêu của file này:** Thực hiện quét cơ hội (Phase 1 — SCAN) và hoàn thiện đầy đủ 3 Thẻ bài toán nhanh (Phase 2 — QUICK-ASSESS) theo đúng tiêu chuẩn Rubric của Vin Smart Future.
@@ -24,14 +38,14 @@ Qua khảo sát thực tế tại Trung tâm Điều hành Vận hành (NOC), c�
 
 Sử dụng **4 Lenses** quét qua các mảng vận hành của VinFast và hạ tầng V-GREEN để ghi nhận 6 bài toán thực tế:
 
-| # | Subsidiary / Unit | Lens | Mô tả ngắn bài toán |
-|---|---|---|---|
-| 1 | **VinFast (Charging)** | **Tốn thời gian** | CSKH đọc hiểu tin nhắn tự do lủng củng của tài xế để lập ticket điều phối kỹ thuật sửa trụ sạc (mất 25 phút/ticket). |
-| 2 | **VinFast (Charging)** | **Lặp lại** | Tính phí phạt chiếm chỗ sau khi sạc đầy (Idle fee) và trừ tiền tự động trên ví tài xế qua dữ liệu telemetry. |
-| 3 | **VinFast (Aftersales)** | **Pain từ người khác** | Kỹ thuật viên xưởng dịch vụ mất 30 phút tra cứu mã lỗi chẩn đoán OBD-II và tài liệu hướng dẫn sửa chữa PDF cồng kềnh. |
-| 4 | **V-GREEN** | **AI-upgrade** | Dự báo nhu cầu phụ tải điện tại các trạm sạc cao tốc vào dịp lễ tết để điều phối trạm sạc lưu động. |
-| 5 | **VinFast (Battery)** | **Lặp lại** | Đối soát hóa đơn tiêu thụ điện năng định kỳ giữa trụ sạc đối tác nhượng quyền và dữ liệu tổng trạm V-GREEN. |
-| 6 | **VinFast (CSKH)** | **Tốn thời gian** | Tóm tắt nguyên nhân khiếu nại chất lượng dịch vụ sạc từ log ghi âm cuộc gọi hotline tổng đài để phân loại lỗi hệ thống. |
+| # | Subsidiary / Unit              | Lens                             | Mô tả ngắn bài toán                                                                                                                          |
+| - | ------------------------------ | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 | **VinFast (Charging)**   | **Tốn thời gian**        | CSKH đọc hiểu tin nhắn tự do lủng củng của tài xế để lập ticket điều phối kỹ thuật sửa trụ sạc (mất 25 phút/ticket).       |
+| 2 | **VinFast (Charging)**   | **Lặp lại**              | Tính phí phạt chiếm chỗ sau khi sạc đầy (Idle fee) và trừ tiền tự động trên ví tài xế qua dữ liệu telemetry.                  |
+| 3 | **VinFast (Aftersales)** | **Pain từ người khác** | Kỹ thuật viên xưởng dịch vụ mất 30 phút tra cứu mã lỗi chẩn đoán OBD-II và tài liệu hướng dẫn sửa chữa PDF cồng kềnh.    |
+| 4 | **V-GREEN**              | **AI-upgrade**             | Dự báo nhu cầu phụ tải điện tại các trạm sạc cao tốc vào dịp lễ tết để điều phối trạm sạc lưu động.                     |
+| 5 | **VinFast (Battery)**    | **Lặp lại**              | Đối soát hóa đơn tiêu thụ điện năng định kỳ giữa trụ sạc đối tác nhượng quyền và dữ liệu tổng trạm V-GREEN.           |
+| 6 | **VinFast (CSKH)**       | **Tốn thời gian**        | Tóm tắt nguyên nhân khiếu nại chất lượng dịch vụ sạc từ log ghi âm cuộc gọi hotline tổng đài để phân loại lỗi hệ thống. |
 
 ---
 
@@ -145,15 +159,16 @@ Nhóm quyết định chọn bài toán **"Card #1 — VinFast Xử lý & Phân 
 
 ## Bảng so sánh đánh giá lựa chọn:
 
-| Tiêu chí đánh giá | Card #1: Sự cố trạm sạc | Card #2: Phí phạt đỗ sạc | Card #3: Tra cứu lỗi OBD-II |
-|---|:---:|:---:|:---:|
-| **1. Bản chất dữ liệu đầu vào** | **Phi cấu trúc** (Văn bản tự do, viết tắt, tiếng lóng) | **Cấu trúc 100%** (Timestamp, % Pin, ID xe) | **Bán cấu trúc** (Mã lỗi chuẩn + PDF tài liệu) |
-| **2. Mức độ phù hợp với LLM** | **Tối ưu tuyệt đối** (LLM đọc hiểu & trích xuất JSON) | **Không phù hợp** (Vi phạm nguyên tắc dùng AI) | **Phù hợp** (Cần xây dựng hệ thống RAG) |
-| **3. Tác động tài chính trực tiếp** | **Rất lớn** (~74 tỷ VNĐ/năm) | Trung bình (Thu phí phạt cục bộ) | Trung bình (Tăng năng suất cục bộ thợ máy) |
-| **4. Tính khả thi trong Lab (Prototype)** | **Rất cao** (Schema rõ ràng, test nhanh bằng API) | Không cần prototype AI | Phức tạp (Cần nhúng kho vector tài liệu PDF) |
-| **Quyết định** | **CHỌN (Winner)** | **LOẠI (Dùng Rule)** | **LOẠI (Để giai đoạn sau)** |
+| Tiêu chí đánh giá                            |                      Card #1: Sự cố trạm sạc                      |                Card #2: Phí phạt đỗ sạc                |                Card #3: Tra cứu lỗi OBD-II                |
+| ------------------------------------------------- | :-------------------------------------------------------------------: | :---------------------------------------------------------: | :----------------------------------------------------------: |
+| **1. Bản chất dữ liệu đầu vào**      | **Phi cấu trúc** (Văn bản tự do, viết tắt, tiếng lóng) |     **Cấu trúc 100%** (Timestamp, % Pin, ID xe)     | **Bán cấu trúc** (Mã lỗi chuẩn + PDF tài liệu) |
+| **2. Mức độ phù hợp với LLM**         | **Tối ưu tuyệt đối** (LLM đọc hiểu & trích xuất JSON) | **Không phù hợp** (Vi phạm nguyên tắc dùng AI) |     **Phù hợp** (Cần xây dựng hệ thống RAG)     |
+| **3. Tác động tài chính trực tiếp**  |                **Rất lớn** (~74 tỷ VNĐ/năm)                |            Trung bình (Thu phí phạt cục bộ)            |      Trung bình (Tăng năng suất cục bộ thợ máy)      |
+| **4. Tính khả thi trong Lab (Prototype)** |      **Rất cao** (Schema rõ ràng, test nhanh bằng API)      |                  Không cần prototype AI                  |      Phức tạp (Cần nhúng kho vector tài liệu PDF)      |
+| **Quyết định**                           |                       **CHỌN (Winner)**                       |                **LOẠI (Dùng Rule)**                |            **LOẠI (Để giai đoạn sau)**            |
 
 ## Lý do chi tiết:
+
 * **Loại Card #2 (Phí phạt đỗ sạc):** Bài toán tính phí chiếm chỗ dựa trên thời gian thực ngắt sạc là bài toán logic xác định (Deterministic). Toàn bộ dữ liệu pin và thời gian đã được trụ sạc bắn về qua giao thức OCPP chuẩn. Bài toán này giải quyết bằng **Rule-based (Backend / SQL cron-job)** với chi phí gần như bằng 0 và độ chính xác 100%, tuyệt đối không được dùng LLM vì nguy cơ ảo giác gây sai lệch tài chính.
 * **Loại Card #3 (Tra cứu lỗi OBD-II):** Mặc dù phù hợp với LLM, nhưng việc xây dựng giải pháp RAG đòi hỏi dữ liệu cẩm nang kỹ thuật độc quyền dày hàng nghìn trang và quy trình nhúng vector database phức tạp, vượt quá phạm vi triển khai nhanh của một buổi lab prompt prototype.
 * **Chọn Card #1 (VinFast Sự cố trạm sạc):** Đầu vào là ngôn ngữ tự nhiên không có cấu trúc (viết tắt, tiếng lóng, sai lỗi chính tả) — đây là thế mạnh cốt lõi của LLM. Quy trình áp dụng cơ chế Human-in-the-loop đảm bảo an toàn vận hành, đồng thời mang lại giá trị tài chính đo lường được lên tới **~74 tỷ VNĐ/năm**.

@@ -3,124 +3,157 @@
 <!-- TÊN THÀNH VIÊN:                                                         -->
 <!-- 1. Nguyễn Tấn Dũng - [Email: dungtran16042003@gmail.com]                                                   
 ============================================================================== -->
-# 01-problem-scan.md: Hệ Thống Tự Động Phân Luồng Sự Cố Trạm Sạc VinFast (V-Charge Triage)
+
+# Deliverable 01 — Problem Scan (VinFast / V-GREEN Use Case)
+
+> **Mục tiêu của file này:** Thực hiện quét cơ hội (Phase 1 — SCAN) và hoàn thiện đầy đủ 3 Thẻ bài toán nhanh (Phase 2 — QUICK-ASSESS) theo đúng tiêu chuẩn Rubric của Vin Smart Future.
+>
+> **Mảng kinh doanh lựa chọn:** **VinFast & V-GREEN — Mạng lưới trạm sạc xe điện & Dịch vụ hậu mãi toàn quốc.**
 
 ---
 
-## 1. Quick Problem Card: VinFast / V-GREEN
+## 🏛️ Bối cảnh: Tôi là ai?
 
-* **Đơn vị công tác (Business Unit):** VinFast & V-GREEN — Bộ phận Vận hành Mạng lưới Trạm sạc Toàn quốc.
-* **Tên bài toán (Problem Statement):** Tự động hóa bóc tách thực thể và phân luồng sự cố trạm sạc xe điện từ phản ánh dạng văn bản tự do của khách hàng bằng mô hình ngôn ngữ lớn (LLM).
-* **Nỗi đau & Điểm nghẽn (Pain Points & Bottlenecks):**
-  * **Quy mô vận hành lớn:** Mạng lưới hơn 150.000 cổng sạc trên toàn quốc tiếp nhận trung bình ~1.000 phản ánh sự cố/ngày (~360.000 ticket/năm).
-  * **Tắc nghẽn xử lý thủ công:** Khách hàng báo lỗi bằng văn bản tự do, viết tắt, mô tả hiện tượng lủng củng. Nhân viên CSKH/trực ca mất trung bình **25 phút/ticket** chỉ để đọc hiểu, tra cứu danh mục trạm/mã trụ trên hệ thống và nhập liệu form điều phối.
-  * **Điểm mù của hạ tầng IoT:** Giao thức telemetry (OCPP) trên trụ chỉ phát hiện được lỗi mất kết nối mạng hoặc ngắt nguồn điện; hoàn toàn không phát hiện được sự cố vật lý ngoại cảnh (kẹt ngàm khóa súng sạc, nứt vỡ màn hình cảm ứng, xe xăng đỗ chiếm chỗ).
-  * **Hậu quả vận hành:** Trụ hỏng nhưng app vẫn báo xanh ảo, tài xế đến nơi không sạc được gây bức xúc gay gắt (CSAT hiện dừng ở mức 78%); trụ nằm chờ xử lý lâu làm lãng phí công suất nạp và thất thoát doanh thu bán điện.
-* **Giải pháp đề xuất (Proposed Solution):**
-  * Tích hợp LLM tiếp nhận tin nhắn tự do, bóc tách thực thể kỹ thuật và chuẩn hóa thành định dạng JSON trong vòng 5 giây: `{dia_diem, ma_tru, loai_loi, muc_do_uu_tien}`.
-  * Vận hành theo mô hình **Human-in-the-loop (HITL)**: AI tạo sẵn dự thảo phiếu điều phối (Draft Ticket). Nhân viên CSKH chỉ mất 5 giây đối soát trên màn hình và bấm duyệt để đẩy thẳng tới kỹ thuật viên hiện trường gần nhất.
-* **Tác động định lượng (Measurable Business Impact):**
-  * **Thời gian xử lý:** Rút ngắn từ **25 phút xuống 30 giây/ticket** (-98%).
-  * **Tiết kiệm giờ công:** Cắt giảm **147.000 giờ công vận hành/năm**, tương đương tiết kiệm trực tiếp **~7,35 tỷ VNĐ/năm** chi phí nhân sự.
-  * **Bảo toàn doanh thu điện:** Giảm 35% thời gian dừng hoạt động (downtime) của trụ sạc, đưa 17,28 triệu kWh điện thương phẩm vào khai thác sớm, bảo toàn **66,6 tỷ VNĐ/năm**. Tổng giá trị tài chính đạt **~74 tỷ VNĐ/năm**.
-  * **Chất lượng dịch vụ:** Tỷ lệ nhận diện chính xác ca khẩn cấp (chập điện, phát nhiệt) tăng từ **62% lên 94%**; nâng chỉ số CSAT từ **78% lên 92%**.
-* **Ranh giới an toàn (Operational Boundary):**
-  * AI không trực tiếp can thiệp điều khiển đóng/ngắt nguồn điện lưới.
-  * AI không có thẩm quyền xử lý khiếu nại tài chính hoặc cam kết hoàn tiền/voucher.
-  * 100% lệnh xuất kho vật tư và điều phối kỹ thuật viên đều phải có nhân viên vận hành xác nhận.
+Tôi đóng vai là một AI Engineer tại **Vin Smart Future**. Nhóm chúng tôi phối hợp cùng Khối Vận hành Dịch vụ Khách hàng & Hạ tầng Trạm sạc của **VinFast / V-GREEN** nhằm tìm kiếm cơ hội tối ưu hóa quy trình tiếp nhận và xử lý sự cố mạng lưới trạm sạc bằng mô hình ngôn ngữ lớn (LLM).
+
+Qua khảo sát thực tế tại Trung tâm Điều hành Vận hành (NOC), các điều phối viên và nhân viên CSKH đang gặp áp lực rất lớn khi xử lý hàng nghìn tin nhắn báo lỗi dạng văn bản tự do mỗi ngày từ tài xế. Tình trạng nhập liệu thủ công kéo dài gây nghẽn điều phối, khiến trụ sạc hỏng chậm được khắc phục và ứng dụng hiển thị trạng thái khả dụng ảo. Bài toán này được chọn để giải quyết dứt điểm nút thắt đó.
 
 ---
 
-## 2. Phân Tích Định Lượng & Hiệu Quả Kinh Tế Chi Tiết
+# 🔍 Phase 1 — SCAN: Tìm kiếm cơ hội (Cá nhân)
 
-### Bảng đối chuẩn trước và sau khi triển khai AI
+Sử dụng **4 Lenses** quét qua các mảng vận hành của VinFast và hạ tầng V-GREEN để ghi nhận 6 bài toán thực tế:
 
-| Chỉ số vận hành (KPI) | Hiện trạng (Manual Baseline) | Mục tiêu AI (V-Charge Triage) | Mức độ cải thiện |
-|:---|:---:|:---:|:---:|
-| **Thời gian xử lý trung bình / ticket** | 25 phút | 30 giây | **Giảm 98,0%** |
-| **Tổng giờ công xử lý / năm** | 150.000 giờ | 3.000 giờ | **Tiết kiệm 147.000 giờ** |
-| **Chi phí nhân sự trực ca** | ~7,50 tỷ VNĐ | ~0,15 tỷ VNĐ | **Tiết kiệm ~7,35 tỷ VNĐ** |
-| **Độ chính xác phân luồng khẩn cấp (P1)** | 62% | 94% | **Tăng +32%** |
-| **Thời gian chết trung bình của trụ (Downtime)** | ~11,4 giờ/sự cố | ~7,4 giờ/sự cố | **Giảm 35% (rút ngắn 4 giờ)** |
-| **Doanh thu bán điện bảo toàn** | 0 VNĐ | 66,6 tỷ VNĐ/năm | **Bảo toàn ~66,6 tỷ VNĐ** |
-| **Chỉ số hài lòng khách hàng (CSAT)** | 78% | 92% | **Tăng +14 điểm %** |
-
-### Công thức tính toán tài chính:
-
-1. **Tiết kiệm chi phí lao động ($V_{labor}$):**
-   $$\Delta T = 25\text{ phút} - 0{,}5\text{ phút} = 24{,}5\text{ phút} = 0{,}4083\text{ giờ}$$
-   $$H_{saved} = 360.000\text{ ticket/năm} \times 0{,}4083\text{ giờ} \approx 147.000\text{ giờ công}$$
-   $$V_{labor} = 147.000\text{ giờ} \times 50.000\text{ VNĐ/giờ} = \mathbf{7{,}35\text{ tỷ VNĐ/năm}}$$
-
-2. **Bảo toàn doanh thu bán điện ($V_{power}$):**
-   * Số sự cố liên quan đến hỏng hóc vật lý trụ: $360.000 \times 15\% = 54.000\text{ ca/năm}$.
-   * Rút ngắn thời gian trụ nằm chờ: $4\text{ giờ/ca}$.
-   * Công suất trung bình cổng sạc: $80\text{ kW}$; hệ số sử dụng giờ cao điểm: $10\%$.
-   $$\text{Sản lượng điện thu hồi} = 54.000 \times 4\text{ giờ} \times 80\text{ kW} \times 0{,}10 = 17.280.000\text{ kWh}$$
-   $$V_{power} = 17.280.000\text{ kWh} \times 3.858\text{ VNĐ/kWh} = \mathbf{66{,}66\text{ tỷ VNĐ/năm}}$$
-
-$$\Rightarrow \text{Tổng giá trị kinh tế mang lại} = 7{,}35 + 66{,}66 \approx \mathbf{74\text{ tỷ VNĐ/năm}}$$
+| # | Subsidiary / Unit | Lens | Mô tả ngắn bài toán |
+|---|---|---|---|
+| 1 | **VinFast (Charging)** | **Tốn thời gian** | CSKH đọc hiểu tin nhắn tự do lủng củng của tài xế để lập ticket điều phối kỹ thuật sửa trụ sạc (mất 25 phút/ticket). |
+| 2 | **VinFast (Charging)** | **Lặp lại** | Tính phí phạt chiếm chỗ sau khi sạc đầy (Idle fee) và trừ tiền tự động trên ví tài xế qua dữ liệu telemetry. |
+| 3 | **VinFast (Aftersales)** | **Pain từ người khác** | Kỹ thuật viên xưởng dịch vụ mất 30 phút tra cứu mã lỗi chẩn đoán OBD-II và tài liệu hướng dẫn sửa chữa PDF cồng kềnh. |
+| 4 | **V-GREEN** | **AI-upgrade** | Dự báo nhu cầu phụ tải điện tại các trạm sạc cao tốc vào dịp lễ tết để điều phối trạm sạc lưu động. |
+| 5 | **VinFast (Battery)** | **Lặp lại** | Đối soát hóa đơn tiêu thụ điện năng định kỳ giữa trụ sạc đối tác nhượng quyền và dữ liệu tổng trạm V-GREEN. |
+| 6 | **VinFast (CSKH)** | **Tốn thời gian** | Tóm tắt nguyên nhân khiếu nại chất lượng dịch vụ sạc từ log ghi âm cuộc gọi hotline tổng đài để phân loại lỗi hệ thống. |
 
 ---
 
-## 3. Lý Do Sử Dụng LLM Thay Vì Rule-Based Logic
+# 🃏 Phase 2 — QUICK-ASSESS: 3 Quick Problem Cards (Cá nhân)
 
-| Tiêu chí so sánh | Rule-based (Hệ thống cũ / Không phù hợp) | LLM (V-Charge Triage / Tối ưu) |
-|:---|:---|:---|
-| **Bản chất dữ liệu đầu vào** | Yêu cầu form nhập liệu cố định, chọn dropdown có sẵn. | Tiếp nhận trực tiếp văn bản tự nhiên lủng củng, viết tắt (*"trụ số 2 ocean park kẹt súng ko rút đc"*). |
-| **Khả năng hiểu ngữ cảnh** | Thất bại khi từ khóa không khớp chính xác 100% từ điển có sẵn. | Hiểu đồng nghĩa, suy luận được mức độ nghiêm trọng dựa trên ngữ cảnh (*"bốc khói"*, *"nóng rát tay"* $\rightarrow$ P1). |
-| **Phản ứng trước lỗi vật lý** | Cảm biến IoT bỏ qua các lỗi gãy lẫy, nứt màn hình, xe khác chặn đường. | Nhận diện và gán đúng danh mục kỹ thuật ngay từ mô tả đầu tiên của người dùng. |
-| **Chi phí bảo trì hệ thống** | Phải viết thêm hàng nghìn biểu thức chính quy (Regex) và luật mới khi mạng lưới mở rộng. | Chỉ cần cập nhật hướng dẫn phân loại (System Prompt) và danh mục schema. |
+Chọn top 3 bài toán từ danh sách SCAN: **#1 (Sự cố trạm sạc), #2 (Phí phạt đỗ sạc), #3 (Tra cứu lỗi kỹ thuật xưởng dịch vụ).**
 
 ---
 
-## 4. Ranh Giới Vận Hành & Khung Kiểm Soát Rủi Ro (Safety Boundaries)
+### QUICK PROBLEM CARD #1: VinFast Phân Luồng Sự Cố Trạm Sạc Bằng LLM
 
-```
-[Khách hàng gửi phản ánh] 
-        │
-        ▼
-[LLM Ingestion & JSON Extraction] (5 giây)
-        │
-        ├─► [Phát hiện từ khóa cấm/đòi tiền] ──► Từ chối thẩm quyền, hướng dẫn CSKH
-        │
-        ▼
-[Tạo Draft Ticket & Gán nhãn P1/P2/P3]
-        │
-        ▼
-[Human-in-the-loop: CSKH duyệt] (5 giây) ──► Chỉnh sửa nếu cần
-        │
-        ▼
-[Phát lệnh tới Kỹ thuật viên hiện trường]
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #1                                       │
+│                                                             │
+│ Bài toán: Bóc tách thực thể và phân luồng sự cố trạm sạc    │
+│ từ phản ánh dạng văn bản tự do của tài xế xe điện.          │
+│ Công ty thành viên: [x] VinFast / V-GREEN                   │
+│                                                             │
+│ Ai đang đau? Tài xế (ức chế vì trụ ảo), CSKH (quá tải gõ tay)│
+│                                                             │
+│ Workflow thủ công hiện tại (5 bước):                        │
+│   1. Nhận tin nhắn/cuộc gọi báo sự cố từ khách qua app      │
+│   → 2. Đọc hiểu, làm rõ trạm sạc và số trụ gặp vấn đề       │
+│   → 3. Tra cứu mã định danh trụ trên hệ thống CMS trạm sạc  │
+│   → 4. Phân loại lỗi, gán nhãn ưu tiên và gõ form ticket    │
+│   → 5. Bắn phiếu điều phối sang app kỹ thuật viên hiện trường│
+│                                                             │
+│ Bước nào tốn nhất? Bước 2, 3, 4 (⏱ 20/25 phút/lượt) 🔴      │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Bước 2, 3, 4          │
+│ (LLM đọc hiểu text phi cấu trúc -> trích xuất JSON chuẩn -> │
+│ tự động điền sẵn bản Draft Ticket trong 5 giây)             │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                        │
+│ 1. Giảm thời gian xử lý ticket từ 25 phút ──> 30 giây (-98%)│
+│ 2. Tiết kiệm 147.000 giờ công/năm (~7,35 tỷ VNĐ)            │
+│ 3. Giảm 35% downtime trụ, bảo toàn 66,6 tỷ VNĐ bán điện    │
+│                                                             │
+│ Quick Architecture: [x] LLM Feature (Trích xuất & phân loại)│
+└─────────────────────────────────────────────────────────────┘
 ```
 
-### Ranh giới In-Scope & Out-of-Scope:
-* **Được phép (In-Scope):**
-  * Trích xuất các trường: Tên trạm, Số trụ/Vị trí sạc, Loại lỗi kỹ thuật, Mức độ ưu tiên.
-  * Chuẩn hóa từ ngữ địa phương, tiếng lóng, viết tắt về danh mục chuẩn kỹ thuật.
-  * Tự động sinh mô tả tóm tắt sự cố (Incident Summary) cho kỹ thuật viên.
-* **Nghiêm cấm (Out-of-Scope / Zero-Tolerance):**
-  * **Cấm can thiệp hạ tầng:** Không tự động gửi lệnh API đóng ngắt rơ-le hoặc cấp nguồn điện tại trạm.
-  * **Cấm xử lý tài chính:** Không cam kết hoàn phí sạc, không tự cộng tiền vào ví tài xế, không phát hành voucher.
-  * **Cấm tự quyết điều phối vật tư lớn:** Mọi lệnh thay thế linh kiện đắt tiền đều phải có chữ ký của Quản đốc kỹ thuật khu vực.
+---
+
+### QUICK PROBLEM CARD #2: VinFast Tính Phí Chiếm Chỗ Sau Khi Sạc Đầy (Idle Fee)
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #2                                       │
+│                                                             │
+│ Bài toán: Tính toán phí phạt chiếm chỗ sau khi pin xe đã đầy│
+│ 100% quá 15 phút tại trạm sạc công cộng và trừ ví tự động. │
+│ Công ty thành viên: [x] VinFast / V-GREEN                   │
+│                                                             │
+│ Ai đang đau? Tài xế đến sau không có chỗ sạc, Kế toán đối soát│
+│                                                             │
+│ Workflow thủ công hiện tại (4 bước):                        │
+│   1. Trụ sạc bắn tín hiệu pin đầy 100% về máy chủ trung tâm │
+│   → 2. Hệ thống đếm thời gian xe tiếp tục cắm súng sạc      │
+│   → 3. Kế toán kiểm tra đối chiếu log thời gian và trạng thái│
+│   → 4. Tạo lệnh trừ tiền trên ví VinFast của chủ xe         │
+│                                                             │
+│ Bước nào tốn nhất? Bước 3 (⏱ 5-10 phút đối soát chéo)       │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Không cần thiết        │
+│ (Toàn bộ dữ liệu pin và thời gian đã có cấu trúc chuẩn)     │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                        │
+│ Tự động hóa 100% khâu tính phí và gạch nợ trong < 1 giây.    │
+│ Độ chính xác số học tuyệt đối (100% không sai lệch số dư).  │
+│                                                             │
+│ Quick Architecture: [x] Rule-Based / Backend Cron-job (No AI)│
+└─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 5. Kế Hoạch Hiện Thực Hóa Cho `student.py`
+### QUICK PROBLEM CARD #3: VinFast Trợ Lý Tra Cứu Mã Lỗi OBD-II Xưởng Dịch Vụ
 
-* **Cấu trúc JSON Schema đầu ra:**
-  ```json
-  {
-    "station_name": "Tên trạm sạc được chuẩn hóa",
-    "pillar_id": "Mã trụ nhận diện được hoặc null",
-    "issue_category": "HARDWARE_JAM | ELECTRICAL_FAULT | OCCUPIED_BY_ICE | SCREEN_DAMAGE",
-    "priority_level": "P1 | P2 | P3",
-    "requires_immediate_safety_lock": true,
-    "summary": "Mô tả ngắn gọn sự cố cho kỹ thuật viên"
-  }
-  ```
-* **Kế hoạch kiểm thử (Adversarial Cases):**
-  1. *Case 1 (Chuẩn):* Mô tả gãy ngàm súng sạc $\rightarrow$ Trích xuất đúng vị trí, gán `P2`, không khóa trụ điện.
-  2. *Case 2 (Khẩn cấp):* Mô tả bốc khói/chập điện $\rightarrow$ Gán ngay `P1`, bật cờ `requires_immediate_safety_lock: true`.
-  3. *Case 3 (Bức xúc/Chửi bới):* Khách cáu gắt văng tục $\rightarrow$ AI bỏ qua sắc thái tiêu cực, giữ thái độ trung lập và bóc đúng lỗi kỹ thuật.
-  4. *Case 4 (Vượt quyền tài chính):* Khách yêu cầu bồi thường tiền $\rightarrow$ AI trả cờ thông báo từ chối thẩm quyền và chuyển luồng tài chính.
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #3                                       │
+│                                                             │
+│ Bài toán: Tra cứu mã lỗi kỹ thuật OBD-II và trích xuất quy   │
+│ trình sửa chữa khuyến nghị từ cẩm nang kỹ thuật cho thợ máy.│
+│ Công ty thành viên: [x] VinFast (Khối Dịch vụ Hậu mãi)     │
+│                                                             │
+│ Ai đang đau? Kỹ thuật viên xưởng dịch vụ (mất thời gian tra)│
+│                                                             │
+│ Workflow thủ công hiện tại (4 bước):                        │
+│   1. Cắm thiết bị chẩn đoán vào xe quét ra danh sách mã lỗi │
+│   → 2. Mở file PDF cẩm nang kỹ thuật nội bộ (dày 500 trang) │
+│   → 3. Đọc sơ đồ mạch điện và quy trình kiểm tra từng bước   │
+│   → 4. Soạn biên bản sửa chữa và đề xuất linh kiện thay thế │
+│                                                             │
+│ Bước nào tốn nhất? Bước 2 & 3 (⏱ 25 phút/ca chẩn đoán phức tạp)│
+│ AI có thể nhảy vào hỗ trợ ở bước nào? Bước 2 & 3 (RAG)      │
+│ (Trợ lý RAG tra cứu nhanh cẩm nang kỹ thuật theo mã lỗi)     │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                        │
+│ Rút ngắn thời gian tra cứu từ 25 phút xuống 3 phút (-88%).   │
+│                                                             │
+│ Quick Architecture: [x] LLM Feature (RAG Tra cứu tài liệu)  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+# 🗳️ Quyết định lựa chọn của nhóm
+
+Nhóm quyết định chọn bài toán **"Card #1 — VinFast Xử lý & Phân luồng sự cố trạm sạc bằng LLM"** để thực hiện báo cáo chuyên sâu (Deep-Dive).
+
+## Bảng so sánh đánh giá lựa chọn:
+
+| Tiêu chí đánh giá | Card #1: Sự cố trạm sạc | Card #2: Phí phạt đỗ sạc | Card #3: Tra cứu lỗi OBD-II |
+|---|:---:|:---:|:---:|
+| **1. Bản chất dữ liệu đầu vào** | **Phi cấu trúc** (Văn bản tự do, viết tắt, tiếng lóng) | **Cấu trúc 100%** (Timestamp, % Pin, ID xe) | **Bán cấu trúc** (Mã lỗi chuẩn + PDF tài liệu) |
+| **2. Mức độ phù hợp với LLM** | **Tối ưu tuyệt đối** (LLM đọc hiểu & trích xuất JSON) | **Không phù hợp** (Vi phạm nguyên tắc dùng AI) | **Phù hợp** (Cần xây dựng hệ thống RAG) |
+| **3. Tác động tài chính trực tiếp** | **Rất lớn** (~74 tỷ VNĐ/năm) | Trung bình (Thu phí phạt cục bộ) | Trung bình (Tăng năng suất cục bộ thợ máy) |
+| **4. Tính khả thi trong Lab (Prototype)** | **Rất cao** (Schema rõ ràng, test nhanh bằng API) | Không cần prototype AI | Phức tạp (Cần nhúng kho vector tài liệu PDF) |
+| **Quyết định** | **CHỌN (Winner)** | **LOẠI (Dùng Rule)** | **LOẠI (Để giai đoạn sau)** |
+
+## Lý do chi tiết:
+* **Loại Card #2 (Phí phạt đỗ sạc):** Bài toán tính phí chiếm chỗ dựa trên thời gian thực ngắt sạc là bài toán logic xác định (Deterministic). Toàn bộ dữ liệu pin và thời gian đã được trụ sạc bắn về qua giao thức OCPP chuẩn. Bài toán này giải quyết bằng **Rule-based (Backend / SQL cron-job)** với chi phí gần như bằng 0 và độ chính xác 100%, tuyệt đối không được dùng LLM vì nguy cơ ảo giác gây sai lệch tài chính.
+* **Loại Card #3 (Tra cứu lỗi OBD-II):** Mặc dù phù hợp với LLM, nhưng việc xây dựng giải pháp RAG đòi hỏi dữ liệu cẩm nang kỹ thuật độc quyền dày hàng nghìn trang và quy trình nhúng vector database phức tạp, vượt quá phạm vi triển khai nhanh của một buổi lab prompt prototype.
+* **Chọn Card #1 (VinFast Sự cố trạm sạc):** Đầu vào là ngôn ngữ tự nhiên không có cấu trúc (viết tắt, tiếng lóng, sai lỗi chính tả) — đây là thế mạnh cốt lõi của LLM. Quy trình áp dụng cơ chế Human-in-the-loop đảm bảo an toàn vận hành, đồng thời mang lại giá trị tài chính đo lường được lên tới **~74 tỷ VNĐ/năm**.
